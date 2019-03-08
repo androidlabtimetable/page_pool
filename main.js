@@ -22317,9 +22317,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
-/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index */ "./src/js/index.js");
 
-
+ // import { userClasses, reloadClass, reloadAllClasses, exportClasses} from "./index"
 
 window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 window.showModal = _utils__WEBPACK_IMPORTED_MODULE_1__["showModal"];
@@ -22328,11 +22327,12 @@ window.scrollToEl = _utils__WEBPACK_IMPORTED_MODULE_1__["scrollToEl"];
 window.parseMcColor = _utils__WEBPACK_IMPORTED_MODULE_1__["parseMcColor"];
 window.contactUs = _utils__WEBPACK_IMPORTED_MODULE_1__["contactUs"];
 window.goToPage = _utils__WEBPACK_IMPORTED_MODULE_1__["goToPage"];
-window.createAndDownloadFile = _utils__WEBPACK_IMPORTED_MODULE_1__["createAndDownloadFile"];
-window.userClasses = _index__WEBPACK_IMPORTED_MODULE_2__["userClasses"];
-window.reloadClass = _index__WEBPACK_IMPORTED_MODULE_2__["reloadClass"];
-window.reloadAllClasses = _index__WEBPACK_IMPORTED_MODULE_2__["reloadAllClasses"];
-window.exportClasses = _index__WEBPACK_IMPORTED_MODULE_2__["exportClasses"]; //window.markdown = options => new MarkdownIt(options).use(lazyHeaders);
+window.createAndDownloadFile = _utils__WEBPACK_IMPORTED_MODULE_1__["createAndDownloadFile"]; //
+// window.userClasses = userClasses;
+// window.reloadClass = reloadClass;
+// window.reloadAllClasses = reloadAllClasses;
+// window.exportClasses = exportClasses;
+//window.markdown = options => new MarkdownIt(options).use(lazyHeaders);
 
 /***/ }),
 
@@ -22340,15 +22340,11 @@ window.exportClasses = _index__WEBPACK_IMPORTED_MODULE_2__["exportClasses"]; //w
 /*!*************************!*\
   !*** ./src/js/index.js ***!
   \*************************/
-/*! exports provided: userClasses, reloadAllClasses, reloadClass, exportClasses */
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userClasses", function() { return userClasses; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reloadAllClasses", function() { return reloadAllClasses; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reloadClass", function() { return reloadClass; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exportClasses", function() { return exportClasses; });
 /* harmony import */ var core_js_modules_es6_array_index_of__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es6.array.index-of */ "./node_modules/core-js/modules/es6.array.index-of.js");
 /* harmony import */ var core_js_modules_es6_array_index_of__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_index_of__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/web.dom.iterable */ "./node_modules/core-js/modules/web.dom.iterable.js");
@@ -22365,6 +22361,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
 
 
 
@@ -22376,53 +22373,64 @@ __webpack_require__.r(__webpack_exports__);
 // Written by Kenvix <i@kenvix.com>
 //--------------------------------------------------
 
-var userClasses = [];
 
-for (var i = 0; i < 7; i++) {
-  userClasses[i] = [];
-}
+jquery__WEBPACK_IMPORTED_MODULE_7___default()(document).ready(function () {
+  var userClasses = [];
 
-for (var _i = 0; _i < 7; _i++) {
-  for (var j = 0; j < 5; j++) {
-    userClasses[_i][j] = null;
+  for (var i = 0; i < 7; i++) {
+    userClasses[i] = [];
   }
-}
 
-function reloadAllClasses() {
-  for (var _i2 = 0; _i2 < 7; _i2++) {
-    for (var _j = 0; _j < 5; _j++) {
-      reloadClass(_i2, _j);
+  for (var _i = 0; _i < 7; _i++) {
+    for (var j = 0; j < 5; j++) {
+      userClasses[_i][j] = null;
     }
   }
-}
-function reloadClass(classDay, classTime) {
-  var targetHTML = jquery__WEBPACK_IMPORTED_MODULE_7___default()("#class-".concat(classDay, "-").concat(classTime));
 
-  if (typeof userClasses[classDay] == "undefined" || typeof userClasses[classDay][classTime] == "undefined" || userClasses[classDay][classTime] == null) {
-    targetHTML.html("+");
-    targetHTML.attr("class", "btn btn-dark");
-  } else {
-    targetHTML.attr("class", "btn btn-success");
+  function reloadAllClasses() {
+    for (var _i2 = 0; _i2 < 7; _i2++) {
+      for (var _j = 0; _j < 5; _j++) {
+        reloadClass(_i2, _j);
+      }
+    }
+
+    console.info("Reloaded all classes");
+    console.debug(userClasses);
   }
 
-  targetHTML.html(userClasses[classDay][classTime].name);
-}
-function exportClasses() {
-  var userId = jquery__WEBPACK_IMPORTED_MODULE_7___default()("#user-id").val();
-  var userName = jquery__WEBPACK_IMPORTED_MODULE_7___default()("#user-name").val();
-  createAndDownloadFile(userId + "-" + userName + ".json", JSON.stringify({
-    version: 1.0,
-    name: userName,
-    id: userId,
-    classes: userClasses
-  }));
-}
-jquery__WEBPACK_IMPORTED_MODULE_7___default()(document).ready(function () {
-  jquery__WEBPACK_IMPORTED_MODULE_7___default()(".class-button").click(function (target) {
-    jquery__WEBPACK_IMPORTED_MODULE_7___default()("#sign-title-day").html(jquery__WEBPACK_IMPORTED_MODULE_7___default()(target).attr("data-day"));
-    jquery__WEBPACK_IMPORTED_MODULE_7___default()("#sign-title-time").html(jquery__WEBPACK_IMPORTED_MODULE_7___default()(target).attr("data-time-readable"));
-    var classDay = jquery__WEBPACK_IMPORTED_MODULE_7___default()(target).attr("data-day");
-    var classTime = jquery__WEBPACK_IMPORTED_MODULE_7___default()(target).attr("data-time");
+  function reloadClass(classDay, classTime) {
+    var targetHTML = jquery__WEBPACK_IMPORTED_MODULE_7___default()("#class-" + classDay + "-" + classTime);
+
+    if (typeof userClasses[classDay] == "undefined" || typeof userClasses[classDay][classTime] == "undefined" || userClasses[classDay][classTime] == null || typeof userClasses[classDay][classTime].name == "undefined") {
+      targetHTML.html("+");
+      targetHTML.attr("class", "btn btn-dark");
+    } else {
+      targetHTML.attr("class", "btn btn-success");
+      targetHTML.html(userClasses[classDay][classTime].name);
+    }
+
+    console.info("Reloaded class " + classDay + " " + classTime);
+    console.debug(targetHTML);
+    console.debug(userClasses[classDay][classTime]);
+  }
+
+  function exportClasses() {
+    var userId = jquery__WEBPACK_IMPORTED_MODULE_7___default()("#user-id").val();
+    var userName = jquery__WEBPACK_IMPORTED_MODULE_7___default()("#user-name").val();
+    Object(_utils__WEBPACK_IMPORTED_MODULE_8__["createAndDownloadFile"])(userId + "-" + userName + ".json", JSON.stringify({
+      version: 1.0,
+      name: userName,
+      id: userId,
+      classes: userClasses
+    }));
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_7___default()(".class-button").click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_7___default()("#sign-title-day").html(jquery__WEBPACK_IMPORTED_MODULE_7___default()(this).attr("data-day"));
+    jquery__WEBPACK_IMPORTED_MODULE_7___default()("#sign-title-time").html(jquery__WEBPACK_IMPORTED_MODULE_7___default()(this).attr("data-time-readable"));
+    var classDay = jquery__WEBPACK_IMPORTED_MODULE_7___default()(this).attr("data-day");
+    var classTime = jquery__WEBPACK_IMPORTED_MODULE_7___default()(this).attr("data-time");
+    console.debug("Edit: " + classDay + " " + classTime);
     jquery__WEBPACK_IMPORTED_MODULE_7___default()("#class-day").val(classDay);
     jquery__WEBPACK_IMPORTED_MODULE_7___default()("#class-time").val(classTime);
     jquery__WEBPACK_IMPORTED_MODULE_7___default()("#class-name").val(typeof userClasses[classDay] == "undefined" || typeof userClasses[classDay][classTime] == "undefined" || userClasses[classDay][classTime] == null ? "" : userClasses[classDay][classTime].name);
@@ -22660,6 +22668,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _export__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./export */ "./src/js/export.js");
 /* harmony import */ var _init__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./init */ "./src/js/init.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index */ "./src/js/index.js");
+
 
 
 
